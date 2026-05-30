@@ -20,6 +20,7 @@ Para que WhatsApp muestre la previsualización en el idioma adecuado, compártas
 | ------- | ------------------------------------ |
 | Español | `https://lidiaymanolo.com/`          |
 | Català  | `https://lidiaymanolo.com/lang/ca/`  |
+| Deutsch | `https://lidiaymanolo.com/lang/de/`  |
 | English | `https://lidiaymanolo.com/lang/en/`  |
 | Nederl. | `https://lidiaymanolo.com/lang/nl/`  |
 | Română  | `https://lidiaymanolo.com/lang/ro/`  |

@@ -881,6 +881,7 @@
     <button type="button" data-lang="ca" role="option">CA · Català</button>
     <button type="button" data-lang="en" role="option">EN · English</button>
     <button type="button" data-lang="nl" role="option">NL · Nederlands</button>
+    <button type="button" data-lang="de" role="option">DE · Deutsch</button>
     <button type="button" data-lang="ro" role="option">RO · Română</button>
     <button type="button" data-lang="ru" role="option">RU · Русский</button>
     <button type="button" data-lang="ar" role="option">AR · العربية</button>
@@ -1336,6 +1337,39 @@
       'cat3': 'Vergeet de jamón niet bij de cocktail',
       'cat4': 'Eén extra garnaaltje per bevestiging'
     },
+    de: {
+      'doc.title': 'Lidia & Manolo · Wir heiraten',
+      'hero.eyebrow': 'Wir heiraten',
+      'hero.day': 'Sonntag',
+      'hero.time': '12:30 Uhr',
+      'div.bigday': 'Der große Tag',
+      'sec.event.title': 'Trauung <em>&</em> Empfang',
+      'card.ceremony': 'Trauung',
+      'card.banquet': 'Empfang',
+      'card.directions': 'Routenplaner',
+      'div.practical': 'Praktische Infos',
+      'sec.practical.title': 'Hin <em>und</em> zurück',
+      'info.bus': 'Bus',
+      'info.bus.sub': 'Hin & zurück',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Hinfahrt</strong> — vom <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> nach La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Rückfahrt</strong> — von La Finca zurück zum <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, mit zwei Abfahrten:',
+      'info.parking': 'Parken',
+      'info.parking.sub': 'Wenn du mit dem Auto kommst',
+      'info.parking.text1': 'Neben der Kirche findet ihr <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, <strong style="color:var(--ink);font-weight:500">24 Stunden</strong> geöffnet.',
+      'info.parking.text2': 'Für den Empfang verfügt <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> über einen privaten Parkplatz für Gäste.',
+      'div.dress': 'Dresscode',
+      'sec.dress.title': 'Schick <em>und</em> bequem',
+      'dress.text1': 'Wir wollen, dass ihr <span class="accent">umwerfend</span> ausseht, aber vor allem dass ihr <span class="accent">Spaß habt</span>.',
+      'dress.text2': 'Wenn das Wetter mitspielt, findet der Empfang draußen statt — also kleidet euch auch passend für das Sönnchen von Benalmádena.',
+      'rsvp.eyebrow': 'Bestätige deine Teilnahme',
+      'rsvp.title': 'Sagt uns <em>ob</em> ihr kommt',
+      'rsvp.deadline': 'Bitte bestätigt vor dem <strong>1. Juli 2026</strong>',
+      'rsvp.button': 'Formular ausfüllen',
+      'cat1': 'Unsere Menschen heiraten!',
+      'cat2': 'Endlich heiraten thie!',
+      'cat3': 'Vergesst den Jamón beim Cocktail nicht',
+      'cat4': 'Eine extra Garnele pro Bestätigung'
+    },
     ca: {
       'doc.title': 'Lidia & Manolo · Ens casem',
       'hero.eyebrow': 'Ens casem',
@@ -1526,6 +1560,7 @@
   if (!initial) {
     const nav = (navigator.language || 'es').toLowerCase();
     if (nav.startsWith('ca')) initial = 'ca';
+    else if (nav.startsWith('de')) initial = 'de';
     else if (nav.startsWith('en')) initial = 'en';
     else if (nav.startsWith('nl')) initial = 'nl';
     else if (nav.startsWith('ro')) initial = 'ro';
