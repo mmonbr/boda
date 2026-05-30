@@ -1495,24 +1495,31 @@
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
     try { localStorage.setItem('boda.lang', lang); } catch(e) {}
-    // Sync URL query string (?lang=xx), unless we're just rehydrating from URL
+    // Sync URL — use /lang/<code>/ for non-default (shareable, distinct OG)
     if (!opts || !opts.skipUrl) {
       try {
-        const url = new URL(window.location);
-        if (lang === 'es') url.searchParams.delete('lang');
-        else url.searchParams.set('lang', lang);
-        history.replaceState({}, '', url);
+        const targetPath = (lang === 'es') ? '/' : '/lang/' + lang + '/';
+        const cleanUrl = targetPath; // drop any ?lang query
+        if (window.location.pathname + window.location.search !== cleanUrl) {
+          history.replaceState({}, '', cleanUrl);
+        }
       } catch(e) {}
     }
   }
 
-  // Precedence: URL query > localStorage > navigator > default 'es'
+  // Precedence: URL path (/lang/XX/) > URL query (?lang=XX) > localStorage > navigator > 'es'
   let initial = null;
   let fromUrl = false;
   try {
-    const urlLang = new URLSearchParams(window.location.search).get('lang');
-    if (urlLang && i18n[urlLang]) { initial = urlLang; fromUrl = true; }
+    const pathMatch = window.location.pathname.match(/^\/lang\/([a-z]{2})\/?$/);
+    if (pathMatch && i18n[pathMatch[1]]) { initial = pathMatch[1]; fromUrl = true; }
   } catch(e) {}
+  if (!initial) {
+    try {
+      const urlLang = new URLSearchParams(window.location.search).get('lang');
+      if (urlLang && i18n[urlLang]) { initial = urlLang; fromUrl = true; }
+    } catch(e) {}
+  }
   if (!initial) {
     try { initial = localStorage.getItem('boda.lang'); } catch(e) {}
   }
