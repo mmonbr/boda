@@ -1476,7 +1476,7 @@
   const toggle = switcher.querySelector('.lang-toggle');
   const current = switcher.querySelector('.lang-current');
 
-  function applyLang(lang) {
+  function applyLang(lang, opts) {
     if (!i18n[lang]) lang = 'es';
     const dict = i18n[lang];
     document.documentElement.lang = lang;
@@ -1495,10 +1495,27 @@
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
     try { localStorage.setItem('boda.lang', lang); } catch(e) {}
+    // Sync URL query string (?lang=xx), unless we're just rehydrating from URL
+    if (!opts || !opts.skipUrl) {
+      try {
+        const url = new URL(window.location);
+        if (lang === 'es') url.searchParams.delete('lang');
+        else url.searchParams.set('lang', lang);
+        history.replaceState({}, '', url);
+      } catch(e) {}
+    }
   }
 
+  // Precedence: URL query > localStorage > navigator > default 'es'
   let initial = null;
-  try { initial = localStorage.getItem('boda.lang'); } catch(e) {}
+  let fromUrl = false;
+  try {
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (urlLang && i18n[urlLang]) { initial = urlLang; fromUrl = true; }
+  } catch(e) {}
+  if (!initial) {
+    try { initial = localStorage.getItem('boda.lang'); } catch(e) {}
+  }
   if (!initial) {
     const nav = (navigator.language || 'es').toLowerCase();
     if (nav.startsWith('ca')) initial = 'ca';
@@ -1509,7 +1526,7 @@
     else if (nav.startsWith('ar')) initial = 'ar';
     else initial = 'es';
   }
-  applyLang(initial);
+  applyLang(initial, { skipUrl: fromUrl });
 
   function closeMenu(){
     switcher.classList.remove('open');
