@@ -699,27 +699,28 @@
   /* ─── LANGUAGE SWITCHER ────────────────────────────── */
   .lang-switcher{
     position:fixed;
-    top:18px;
-    right:18px;
+    top:14px;
+    right:14px;
     z-index:50;
+    direction:ltr;
     display:flex;
-    gap:2px;
-    background:rgba(247,239,226,.85);
+    gap:1px;
+    background:rgba(247,239,226,.88);
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
     border:1px solid var(--line);
     border-radius:99px;
-    padding:4px;
+    padding:3px;
     font-family:'Jost',sans-serif;
-    font-size:.68rem;
-    letter-spacing:.18em;
+    font-size:.64rem;
+    letter-spacing:.14em;
     text-transform:uppercase;
     box-shadow:0 4px 14px rgba(74,58,44,.07);
   }
   .lang-switcher button{
     background:none;
     border:0;
-    padding:7px 11px;
+    padding:6px 9px;
     border-radius:99px;
     color:var(--whisper);
     cursor:pointer;
@@ -733,9 +734,18 @@
     background:var(--ink);
     color:var(--cream);
   }
-  @media (max-width:520px){
-    .lang-switcher{top:12px;right:12px;font-size:.62rem;padding:3px}
-    .lang-switcher button{padding:6px 9px}
+  @media (max-width:560px){
+    .lang-switcher{top:10px;right:10px;font-size:.58rem;padding:2px;letter-spacing:.1em}
+    .lang-switcher button{padding:5px 7px}
+  }
+  @media (max-width:380px){
+    .lang-switcher{font-size:.54rem}
+    .lang-switcher button{padding:5px 6px}
+  }
+  /* RTL adjustments for Arabic */
+  [dir="rtl"] .speech.point-l::before,
+  [dir="rtl"] .speech.point-l::after{
+    left:auto;
   }
 
   /* ─── REVEAL ON SCROLL ─────────────────────────────── */
@@ -815,8 +825,12 @@
 <!-- ───────── SELECTOR DE IDIOMA ───────── -->
 <div class="lang-switcher" role="group" aria-label="Language">
   <button type="button" data-lang="es" class="active" aria-label="Español">ES</button>
+  <button type="button" data-lang="ca" aria-label="Català">CA</button>
   <button type="button" data-lang="en" aria-label="English">EN</button>
   <button type="button" data-lang="nl" aria-label="Nederlands">NL</button>
+  <button type="button" data-lang="ro" aria-label="Română">RO</button>
+  <button type="button" data-lang="ru" aria-label="Русский">RU</button>
+  <button type="button" data-lang="ar" aria-label="العربية">AR</button>
 </div>
 
 
@@ -1267,13 +1281,148 @@
       'cat2': 'Eindelijk gaan thee trouwen!',
       'cat3': 'Vergeet de jamón niet bij de cocktail',
       'cat4': 'Eén extra garnaaltje per bevestiging'
+    },
+    ca: {
+      'doc.title': 'Lidia & Manolo · Ens casem',
+      'hero.eyebrow': 'Ens casem',
+      'hero.day': 'Diumenge',
+      'hero.time': '12:30 h',
+      'div.bigday': 'El gran dia',
+      'sec.event.title': 'Cerimònia <em>i</em> Banquet',
+      'card.ceremony': 'Cerimònia',
+      'card.banquet': 'Banquet',
+      'card.directions': 'Com arribar-hi',
+      'div.practical': 'Detalls pràctics',
+      'sec.practical.title': 'Com arribar <em>i</em> tornar',
+      'info.bus': 'Autobús',
+      'info.bus.sub': 'Anada & tornada',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Anada</strong> — des de l\'<a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> fins a La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Tornada</strong> — des de La Finca tornant a l\'<a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, amb dues sortides:',
+      'info.parking': 'Pàrquing',
+      'info.parking.sub': 'Si véns en cotxe',
+      'info.parking.text1': 'Al costat de l\'església teniu el <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, obert les <strong style="color:var(--ink);font-weight:500">24 hores</strong>.',
+      'info.parking.text2': 'Per al banquet, <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> disposa d\'aparcament privat per als convidats.',
+      'div.dress': 'Vestimenta',
+      'sec.dress.title': 'Guapos <em>i</em> còmodes',
+      'dress.text1': 'Volem que vingueu <span class="accent">guapíssims</span>, però sobretot que <span class="accent">gaudiu</span>.',
+      'dress.text2': 'Si la climatologia ho permet, el còctel se celebrarà a l\'aire lliure, així que vestiu pensant també a gaudir del solet de Benalmádena.',
+      'rsvp.eyebrow': 'Confirma la teva assistència',
+      'rsvp.title': 'Digueu-nos <em>si</em> veniu',
+      'rsvp.deadline': 'Si us plau, confirmeu abans de l\'<strong>1 de juny de 2026</strong>',
+      'rsvp.button': 'Omplir el formulari',
+      'cat1': 'Els nostres humans es casen!',
+      'cat2': 'Per fi eth cazen!',
+      'cat3': 'No oblideu el pernil del còctel',
+      'cat4': 'Per cada confirmació, una gambeta extra'
+    },
+    ro: {
+      'doc.title': 'Lidia & Manolo · Ne căsătorim',
+      'hero.eyebrow': 'Ne căsătorim',
+      'hero.day': 'Duminică',
+      'hero.time': '12:30',
+      'div.bigday': 'Marea zi',
+      'sec.event.title': 'Ceremonia <em>și</em> Recepția',
+      'card.ceremony': 'Ceremonia',
+      'card.banquet': 'Recepția',
+      'card.directions': 'Indicații',
+      'div.practical': 'Informații practice',
+      'sec.practical.title': 'Cum ajungi <em>și</em> te întorci',
+      'info.bus': 'Autobuz',
+      'info.bus.sub': 'Dus & întors',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Dus</strong> — de la <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> până la La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Întors</strong> — de la La Finca înapoi la <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, cu două plecări:',
+      'info.parking': 'Parcare',
+      'info.parking.sub': 'Dacă vii cu mașina',
+      'info.parking.text1': 'Lângă biserică se află <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, deschis <strong style="color:var(--ink);font-weight:500">24 de ore</strong>.',
+      'info.parking.text2': 'Pentru recepție, <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> dispune de parcare privată pentru invitați.',
+      'div.dress': 'Cod vestimentar',
+      'sec.dress.title': 'Eleganți <em>și</em> confortabili',
+      'dress.text1': 'Vrem să veniți <span class="accent">eleganți</span>, dar mai ales să vă <span class="accent">distrați</span>.',
+      'dress.text2': 'Dacă vremea permite, cocktailul va avea loc afară, așa că îmbrăcați-vă și pentru soarele din Benalmádena.',
+      'rsvp.eyebrow': 'Confirmă-ți prezența',
+      'rsvp.title': 'Spune-ne <em>dacă</em> vii',
+      'rsvp.deadline': 'Te rugăm să confirmi înainte de <strong>1 iunie 2026</strong>',
+      'rsvp.button': 'Completează formularul',
+      'cat1': 'Oamenii noștri se căsătoresc!',
+      'cat2': 'În țfârțit țe căzătorezc!',
+      'cat3': 'Nu uitați jamón-ul de la cocktail',
+      'cat4': 'Un crevețel în plus pentru fiecare confirmare'
+    },
+    ru: {
+      'doc.title': 'Лидия и Маноло · Мы женимся',
+      'hero.eyebrow': 'Мы женимся',
+      'hero.day': 'Воскресенье',
+      'hero.time': '12:30',
+      'div.bigday': 'Великий день',
+      'sec.event.title': 'Церемония <em>и</em> банкет',
+      'card.ceremony': 'Церемония',
+      'card.banquet': 'Банкет',
+      'card.directions': 'Маршрут',
+      'div.practical': 'Практическая информация',
+      'sec.practical.title': 'Туда <em>и</em> обратно',
+      'info.bus': 'Автобус',
+      'info.bus.sub': 'Туда и обратно',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Туда</strong> — от <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>отеля Vincci Posada del Patio</strong></a> до La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Обратно</strong> — от La Finca обратно в <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>отель Vincci Posada del Patio</strong></a>, два рейса:',
+      'info.parking': 'Парковка',
+      'info.parking.sub': 'Если вы на машине',
+      'info.parking.text1': 'Рядом с церковью находится <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, открыт <strong style="color:var(--ink);font-weight:500">круглосуточно</strong>.',
+      'info.parking.text2': 'Для банкета <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> предоставляет частную парковку для гостей.',
+      'div.dress': 'Дресс-код',
+      'sec.dress.title': 'Красивые <em>и</em> удобные',
+      'dress.text1': 'Мы хотим, чтобы вы выглядели <span class="accent">прекрасно</span>, но главное — <span class="accent">наслаждайтесь</span>.',
+      'dress.text2': 'Если погода позволит, коктейль пройдёт на свежем воздухе, так что одевайтесь с учётом солнышка Бенальмадены.',
+      'rsvp.eyebrow': 'Подтвердите присутствие',
+      'rsvp.title': 'Скажите, <em>придёте ли</em> вы',
+      'rsvp.deadline': 'Пожалуйста, подтвердите до <strong>1 июня 2026</strong>',
+      'rsvp.button': 'Заполнить форму',
+      'cat1': 'Наши люди женятся!',
+      'cat2': 'Након_еш-то они шенятша!',
+      'cat3': 'Не забудьте хамон на коктейле',
+      'cat4': 'За каждое подтверждение — лишняя креветка'
+    },
+    ar: {
+      'doc.title': 'ليديا وملينو · نحن نتزوج',
+      'hero.eyebrow': 'نحن نتزوج',
+      'hero.day': 'الأحد',
+      'hero.time': '12:30',
+      'div.bigday': 'اليوم الكبير',
+      'sec.event.title': 'المراسم <em>و</em>المأدبة',
+      'card.ceremony': 'المراسم',
+      'card.banquet': 'المأدبة',
+      'card.directions': 'الاتجاهات',
+      'div.practical': 'معلومات عملية',
+      'sec.practical.title': 'الذهاب <em>و</em>العودة',
+      'info.bus': 'الحافلة',
+      'info.bus.sub': 'ذهاب وإياب',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">الذهاب</strong> — من <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>فندق Vincci Posada del Patio</strong></a> إلى La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">العودة</strong> — من La Finca عودة إلى <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>فندق Vincci Posada del Patio</strong></a>، مع رحلتين:',
+      'info.parking': 'موقف السيارات',
+      'info.parking.sub': 'إذا كنت قادماً بالسيارة',
+      'info.parking.text1': 'بجانب الكنيسة يوجد <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>، مفتوح <strong style="color:var(--ink);font-weight:500">24 ساعة</strong>.',
+      'info.parking.text2': 'بالنسبة للمأدبة، يوفر <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> موقفاً خاصاً للضيوف.',
+      'div.dress': 'قواعد اللباس',
+      'sec.dress.title': 'أنيقون <em>و</em>مرتاحون',
+      'dress.text1': 'نريدكم أن تأتوا <span class="accent">أنيقين</span>، ولكن قبل كل شيء أن <span class="accent">تستمتعوا</span>.',
+      'dress.text2': 'إذا سمح الطقس، ستقام حفلة الكوكتيل في الهواء الطلق، فالبسوا للاستمتاع أيضاً بشمس بنالماديا.',
+      'rsvp.eyebrow': 'أكد حضورك',
+      'rsvp.title': 'أخبرنا <em>إذا</em> كنت قادماً',
+      'rsvp.deadline': 'يرجى التأكيد قبل <strong>1 يونيو 2026</strong>',
+      'rsvp.button': 'املأ النموذج',
+      'cat1': 'أصحابنا سيتزوجون!',
+      'cat2': 'ياي! أخيراً يتـثوجون!',
+      'cat3': 'لا تنسوا الخامون في الكوكتيل',
+      'cat4': 'جمبري إضافي لكل تأكيد'
     }
   };
+
+  const rtlLangs = ['ar'];
 
   function applyLang(lang) {
     if (!i18n[lang]) lang = 'es';
     const dict = i18n[lang];
     document.documentElement.lang = lang;
+    document.documentElement.dir = rtlLangs.includes(lang) ? 'rtl' : 'ltr';
     if (dict['doc.title']) document.title = dict['doc.title'];
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const k = el.dataset.i18n;
@@ -1293,8 +1442,12 @@
   try { initial = localStorage.getItem('boda.lang'); } catch(e) {}
   if (!initial) {
     const nav = (navigator.language || 'es').toLowerCase();
-    if (nav.startsWith('en')) initial = 'en';
+    if (nav.startsWith('ca')) initial = 'ca';
+    else if (nav.startsWith('en')) initial = 'en';
     else if (nav.startsWith('nl')) initial = 'nl';
+    else if (nav.startsWith('ro')) initial = 'ro';
+    else if (nav.startsWith('ru')) initial = 'ru';
+    else if (nav.startsWith('ar')) initial = 'ar';
     else initial = 'es';
   }
   applyLang(initial);
