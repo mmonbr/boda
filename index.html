@@ -696,6 +696,48 @@
     color:var(--whisper);
   }
 
+  /* ─── LANGUAGE SWITCHER ────────────────────────────── */
+  .lang-switcher{
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:50;
+    display:flex;
+    gap:2px;
+    background:rgba(247,239,226,.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line);
+    border-radius:99px;
+    padding:4px;
+    font-family:'Jost',sans-serif;
+    font-size:.68rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    box-shadow:0 4px 14px rgba(74,58,44,.07);
+  }
+  .lang-switcher button{
+    background:none;
+    border:0;
+    padding:7px 11px;
+    border-radius:99px;
+    color:var(--whisper);
+    cursor:pointer;
+    font:inherit;
+    letter-spacing:inherit;
+    text-transform:inherit;
+    transition:background .25s ease, color .25s ease;
+  }
+  .lang-switcher button:hover:not(.active){color:var(--ink)}
+  .lang-switcher button.active{
+    background:var(--ink);
+    color:var(--cream);
+  }
+  @media (max-width:520px){
+    .lang-switcher{top:12px;right:12px;font-size:.62rem;padding:3px}
+    .lang-switcher button{padding:6px 9px}
+  }
+
   /* ─── REVEAL ON SCROLL ─────────────────────────────── */
   .reveal{
     opacity:0;
@@ -770,6 +812,14 @@
 </head>
 <body>
 
+<!-- ───────── SELECTOR DE IDIOMA ───────── -->
+<div class="lang-switcher" role="group" aria-label="Language">
+  <button type="button" data-lang="es" class="active" aria-label="Español">ES</button>
+  <button type="button" data-lang="en" aria-label="English">EN</button>
+  <button type="button" data-lang="nl" aria-label="Nederlands">NL</button>
+</div>
+
+
 <!-- ───────── HERO ───────── -->
 <header class="hero wrap">
 
@@ -797,7 +847,7 @@
       <path d="M91 88 L94 86"/>
       <path d="M94 80 L96 78"/>
     </svg>
-    <div class="speech point-l wrap">¡Nuestros humanos se casan!</div>
+    <div class="speech point-l wrap" data-i18n="cat1">¡Nuestros humanos se casan!</div>
   </div>
 
   <!-- RAGDOLL caminando, con bocadillo cecean-do -->
@@ -817,21 +867,21 @@
       <path d="M92 68 L92 80"/>
       <path d="M102 46 C124 42, 128 18, 110 14 C104 16, 100 22, 104 30 Q98 32, 102 38"/>
     </svg>
-    <div class="speech point-r">¡Por fin ze cazan!</div>
+    <div class="speech point-r" data-i18n="cat2">¡Por fin ze cazan!</div>
   </div>
 
-  <span class="eyebrow">Nos casamos</span>
+  <span class="eyebrow" data-i18n="hero.eyebrow">Nos casamos</span>
 
   <div class="ampersand-wrap">
     <h1 class="names"><span>Lidia</span><span class="y">&amp;</span><span>Manolo</span></h1>
   </div>
 
   <div class="hero-date">
-    <span>Domingo</span>
+    <span data-i18n="hero.day">Domingo</span>
     <span class="dot"></span>
     <span class="num">06 · 12 · 2026</span>
     <span class="dot"></span>
-    <span>12:30 h</span>
+    <span data-i18n="hero.time">12:30 h</span>
   </div>
 
   <div class="hero-locale">Málaga</div>
@@ -861,8 +911,8 @@
 
   <section id="dia" class="reveal">
     <div class="section-head">
-      <span class="eyebrow">El gran día</span>
-      <h2>Ceremonia <em>y</em> Banquete</h2>
+      <span class="eyebrow" data-i18n="div.bigday">El gran día</span>
+      <h2 data-i18n-html="sec.event.title">Ceremonia <em>y</em> Banquete</h2>
     </div>
 
     <div class="events">
@@ -877,12 +927,12 @@
           <circle cx="36" cy="34" r="1.4" fill="currentColor"/>
           <path d="M28 40 Q30 42, 32 40"/>
         </svg>
-        <div class="kind">Ceremonia</div>
+        <div class="kind" data-i18n="card.ceremony">Ceremonia</div>
         <div class="time">12:30 h</div>
         <h3>Iglesia de San Juan</h3>
         <p class="addr">Calle San Juan, 3<br/>29005 Málaga</p>
         <a class="map" href="https://maps.app.goo.gl/q9LgvNCR32Uvdhb69" target="_blank" rel="noopener">
-          Cómo llegar
+          <span data-i18n="card.directions">Cómo llegar</span>
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <div class="map-frame">
@@ -905,12 +955,12 @@
           <circle cx="15" cy="27" r="1" fill="currentColor"/>
           <path d="M60 32 C66 30, 68 22, 60 20"/>
         </svg>
-        <div class="kind">Banquete</div>
+        <div class="kind" data-i18n="card.banquet">Banquete</div>
         <div class="time">15:00 h</div>
         <h3>La Finca Benalmádena</h3>
         <p class="addr">Av. de los Argonautas, 10<br/>29639 Benalmádena, Málaga</p>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=La+Finca+Benalm%C3%A1dena%2C+Av.+de+los+Argonautas+10%2C+29639+Benalm%C3%A1dena" target="_blank" rel="noopener">
-          Cómo llegar
+          <span data-i18n="card.directions">Cómo llegar</span>
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <div class="map-frame">
@@ -941,8 +991,8 @@
 
   <section id="info" class="reveal">
     <div class="section-head">
-      <span class="eyebrow">Detalles prácticos</span>
-      <h2>Cómo llegar <em>y</em> volver</h2>
+      <span class="eyebrow" data-i18n="div.practical">Detalles prácticos</span>
+      <h2 data-i18n-html="sec.practical.title">Cómo llegar <em>y</em> volver</h2>
     </div>
 
     <div class="info-grid">
@@ -957,16 +1007,16 @@
             <circle cx="22" cy="26" r="2"/>
             <path d="M9 11 H13 M19 11 H23"/>
           </svg>
-          Autobús
+          <span data-i18n="info.bus">Autobús</span>
         </h3>
-        <div class="sub">Ida &amp; vuelta</div>
+        <div class="sub" data-i18n="info.bus.sub">Ida &amp; vuelta</div>
 
-        <p><strong style="color:var(--ink);font-weight:500">Ida</strong> — desde el <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> hasta La Finca Benalmádena.</p>
+        <p data-i18n-html="info.bus.outbound"><strong style="color:var(--ink);font-weight:500">Ida</strong> — desde el <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> hasta La Finca Benalmádena.</p>
         <div class="times">
           <span class="pill">14:00 h</span>
         </div>
 
-        <p style="margin-top:22px"><strong style="color:var(--ink);font-weight:500">Vuelta</strong> — desde La Finca hasta el centro de Málaga, con dos salidas:</p>
+        <p style="margin-top:22px" data-i18n-html="info.bus.return"><strong style="color:var(--ink);font-weight:500">Vuelta</strong> — desde La Finca de vuelta al <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, con dos salidas:</p>
         <div class="times">
           <span class="pill">21:00 h</span>
           <span class="pill">00:00 h</span>
@@ -980,11 +1030,11 @@
             <rect x="6" y="6" width="20" height="20" rx="3"/>
             <path d="M13 22 V11 H17.5 a3.5 3.5 0 0 1 0 7 H13"/>
           </svg>
-          Parking
+          <span data-i18n="info.parking">Parking</span>
         </h3>
-        <div class="sub">Si vienes en coche</div>
-        <p>Junto a la iglesia tenéis el <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, abierto las <strong style="color:var(--ink);font-weight:500">24 horas</strong>.</p>
-        <p>Para el banquete, <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> dispone de aparcamiento privado para los invitados.</p>
+        <div class="sub" data-i18n="info.parking.sub">Si vienes en coche</div>
+        <p data-i18n-html="info.parking.text1">Junto a la iglesia tenéis el <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, abierto las <strong style="color:var(--ink);font-weight:500">24 horas</strong>.</p>
+        <p data-i18n-html="info.parking.text2">Para el banquete, <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> dispone de aparcamiento privado para los invitados.</p>
       </div>
 
     </div>
@@ -1023,7 +1073,7 @@
     <path d="M99 48 L101 46"/>
     <path d="M101 42 L103 40"/>
   </svg>
-  <div class="speech point-l">Asegurad el jamón del cóctel</div>
+  <div class="speech point-l" data-i18n="cat3">Asegurad el jamón del cóctel</div>
 </div>
 
 
@@ -1043,13 +1093,13 @@
 
   <section id="vestimenta" class="reveal">
     <div class="section-head">
-      <span class="eyebrow">Vestimenta</span>
-      <h2>Guapos <em>y</em> cómodos</h2>
+      <span class="eyebrow" data-i18n="div.dress">Vestimenta</span>
+      <h2 data-i18n-html="sec.dress.title">Guapos <em>y</em> cómodos</h2>
     </div>
 
     <div class="dress-note">
-      <p>Queremos que vengáis <span class="accent">guapísimos</span>, pero que sobre todo <span class="accent">disfrutéis</span>.</p>
-      <p>Si la climatología lo permite, el cóctel se celebrará al aire libre, así que vestid pensando también en disfrutar del solecito de Benalmádena.</p>
+      <p data-i18n-html="dress.text1">Queremos que vengáis <span class="accent">guapísimos</span>, pero que sobre todo <span class="accent">disfrutéis</span>.</p>
+      <p data-i18n="dress.text2">Si la climatología lo permite, el cóctel se celebrará al aire libre, así que vestid pensando también en disfrutar del solecito de Benalmádena.</p>
     </div>
   </section>
 </div>
@@ -1058,12 +1108,12 @@
 <!-- ───────── RSVP ───────── -->
 <section class="rsvp reveal">
   <div class="wrap">
-    <span class="eyebrow">Confirma tu asistencia</span>
-    <h2 style="margin-top:18px">Cuéntanos <em>si</em> vienes</h2>
-    <p class="deadline">Por favor, confírmanos antes del <strong>1 de junio de 2026</strong></p>
+    <span class="eyebrow" data-i18n="rsvp.eyebrow">Confirma tu asistencia</span>
+    <h2 style="margin-top:18px" data-i18n-html="rsvp.title">Cuéntanos <em>si</em> vienes</h2>
+    <p class="deadline" data-i18n-html="rsvp.deadline">Por favor, confírmanos antes del <strong>1 de junio de 2026</strong></p>
 
     <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScKGFbbl3Y1chW-EtNdnZrfH_kvCmGZSJxTfE-qkIg2TriSHg/viewform?usp=header" target="_blank" rel="noopener">
-      Rellenar formulario
+      <span data-i18n="rsvp.button">Rellenar formulario</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
 
@@ -1084,7 +1134,7 @@
         <path d="M132 40 C140 38, 142 30, 134 28"/>
         <path d="M137 34 L139 32"/>
       </svg>
-      <div class="speech point-l wrap">Por cada confirmación, una gambita extra</div>
+      <div class="speech point-l wrap" data-i18n="cat4">Por cada confirmación, una gambita extra</div>
     </div>
   </div>
 </section>
@@ -1104,7 +1154,7 @@
 
 
 <script>
-  // gentle reveal on scroll
+  // ─── reveal on scroll ────────────────────────────────
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1115,6 +1165,143 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+
+  // ─── i18n ────────────────────────────────────────────
+  const i18n = {
+    es: {
+      'doc.title': 'Lidia & Manolo · Nos casamos',
+      'hero.eyebrow': 'Nos casamos',
+      'hero.day': 'Domingo',
+      'hero.time': '12:30 h',
+      'div.bigday': 'El gran día',
+      'sec.event.title': 'Ceremonia <em>y</em> Banquete',
+      'card.ceremony': 'Ceremonia',
+      'card.banquet': 'Banquete',
+      'card.directions': 'Cómo llegar',
+      'div.practical': 'Detalles prácticos',
+      'sec.practical.title': 'Cómo llegar <em>y</em> volver',
+      'info.bus': 'Autobús',
+      'info.bus.sub': 'Ida & vuelta',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Ida</strong> — desde el <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> hasta La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Vuelta</strong> — desde La Finca de vuelta al <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, con dos salidas:',
+      'info.parking': 'Parking',
+      'info.parking.sub': 'Si vienes en coche',
+      'info.parking.text1': 'Junto a la iglesia tenéis el <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, abierto las <strong style="color:var(--ink);font-weight:500">24 horas</strong>.',
+      'info.parking.text2': 'Para el banquete, <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> dispone de aparcamiento privado para los invitados.',
+      'div.dress': 'Vestimenta',
+      'sec.dress.title': 'Guapos <em>y</em> cómodos',
+      'dress.text1': 'Queremos que vengáis <span class="accent">guapísimos</span>, pero que sobre todo <span class="accent">disfrutéis</span>.',
+      'dress.text2': 'Si la climatología lo permite, el cóctel se celebrará al aire libre, así que vestid pensando también en disfrutar del solecito de Benalmádena.',
+      'rsvp.eyebrow': 'Confirma tu asistencia',
+      'rsvp.title': 'Cuéntanos <em>si</em> vienes',
+      'rsvp.deadline': 'Por favor, confírmanos antes del <strong>1 de junio de 2026</strong>',
+      'rsvp.button': 'Rellenar formulario',
+      'cat1': '¡Nuestros humanos se casan!',
+      'cat2': '¡Por fin ze cazan!',
+      'cat3': 'Asegurad el jamón del cóctel',
+      'cat4': 'Por cada confirmación, una gambita extra'
+    },
+    en: {
+      'doc.title': 'Lidia & Manolo · We\'re getting married',
+      'hero.eyebrow': "We're getting married",
+      'hero.day': 'Sunday',
+      'hero.time': '12:30',
+      'div.bigday': 'The big day',
+      'sec.event.title': 'Ceremony <em>&</em> Reception',
+      'card.ceremony': 'Ceremony',
+      'card.banquet': 'Reception',
+      'card.directions': 'Get directions',
+      'div.practical': 'Practical info',
+      'sec.practical.title': 'Getting <em>there</em> & back',
+      'info.bus': 'Bus',
+      'info.bus.sub': 'There & back',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Outbound</strong> — from the <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> to La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Return</strong> — from La Finca back to the <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, with two departures:',
+      'info.parking': 'Parking',
+      'info.parking.sub': 'If you\'re coming by car',
+      'info.parking.text1': 'Right next to the church you\'ll find <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, open <strong style="color:var(--ink);font-weight:500">24 hours</strong>.',
+      'info.parking.text2': 'For the reception, <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> has private parking for guests.',
+      'div.dress': 'Dress code',
+      'sec.dress.title': 'Smart <em>&</em> comfy',
+      'dress.text1': 'We want you to look <span class="accent">amazing</span>, but above all to <span class="accent">enjoy yourselves</span>.',
+      'dress.text2': 'If the weather plays along, the cocktail hour will be outdoors, so dress to also enjoy a bit of Benalmádena sunshine.',
+      'rsvp.eyebrow': 'Confirm your attendance',
+      'rsvp.title': 'Let us know <em>if</em> you\'re coming',
+      'rsvp.deadline': 'Please RSVP before <strong>1 June 2026</strong>',
+      'rsvp.button': 'Fill in the form',
+      'cat1': 'Our humans are getting married!',
+      'cat2': 'Yeth! At lath they\'re getting married!',
+      'cat3': 'Don\'t forget the jamón at the cocktail',
+      'cat4': 'One extra shrimp per RSVP'
+    },
+    nl: {
+      'doc.title': 'Lidia & Manolo · Wij gaan trouwen',
+      'hero.eyebrow': 'Wij gaan trouwen',
+      'hero.day': 'Zondag',
+      'hero.time': '12.30 uur',
+      'div.bigday': 'De grote dag',
+      'sec.event.title': 'Ceremonie <em>&</em> Receptie',
+      'card.ceremony': 'Ceremonie',
+      'card.banquet': 'Receptie',
+      'card.directions': 'Routebeschrijving',
+      'div.practical': 'Praktische info',
+      'sec.practical.title': 'Heen <em>en</em> terug',
+      'info.bus': 'Bus',
+      'info.bus.sub': 'Heen & terug',
+      'info.bus.outbound': '<strong style="color:var(--ink);font-weight:500">Heen</strong> — vanaf het <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a> naar La Finca Benalmádena.',
+      'info.bus.return': '<strong style="color:var(--ink);font-weight:500">Terug</strong> — van La Finca terug naar het <a href="https://maps.app.goo.gl/ntFnRGrRSaHqgUiN7" target="_blank" rel="noopener" class="inline-link"><strong>Hotel Vincci Posada del Patio</strong></a>, met twee vertrektijden:',
+      'info.parking': 'Parkeren',
+      'info.parking.sub': 'Als je met de auto komt',
+      'info.parking.text1': 'Naast de kerk vind je <a href="https://share.google/mX4UquAaMGSjkHEAz" target="_blank" rel="noopener" class="inline-link"><strong>Parking Camas</strong></a>, <strong style="color:var(--ink);font-weight:500">24 uur</strong> per dag open.',
+      'info.parking.text2': 'Voor de receptie heeft <a href="https://share.google/TbtjnWcRT7YF2y4t9" target="_blank" rel="noopener" class="inline-link"><strong>La Finca</strong></a> een eigen parkeerplaats voor gasten.',
+      'div.dress': 'Dresscode',
+      'sec.dress.title': 'Mooi <em>&</em> comfortabel',
+      'dress.text1': 'We willen dat jullie er <span class="accent">prachtig</span> uitzien, maar vooral dat jullie <span class="accent">genieten</span>.',
+      'dress.text2': 'Als het weer het toelaat, vindt de cocktail buiten plaats, dus kleed je ook op het Benalmádena-zonnetje.',
+      'rsvp.eyebrow': 'Bevestig je komst',
+      'rsvp.title': 'Laat ons weten <em>of</em> je komt',
+      'rsvp.deadline': 'Bevestig alstublieft vóór <strong>1 juni 2026</strong>',
+      'rsvp.button': 'Vul het formulier in',
+      'cat1': 'Onze menthen gaan trouwen!',
+      'cat2': 'Eindelijk gaan thee trouwen!',
+      'cat3': 'Vergeet de jamón niet bij de cocktail',
+      'cat4': 'Eén extra garnaaltje per bevestiging'
+    }
+  };
+
+  function applyLang(lang) {
+    if (!i18n[lang]) lang = 'es';
+    const dict = i18n[lang];
+    document.documentElement.lang = lang;
+    if (dict['doc.title']) document.title = dict['doc.title'];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.dataset.i18n;
+      if (dict[k]) el.textContent = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const k = el.dataset.i18nHtml;
+      if (dict[k]) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll('.lang-switcher button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    try { localStorage.setItem('boda.lang', lang); } catch(e) {}
+  }
+
+  let initial = null;
+  try { initial = localStorage.getItem('boda.lang'); } catch(e) {}
+  if (!initial) {
+    const nav = (navigator.language || 'es').toLowerCase();
+    if (nav.startsWith('en')) initial = 'en';
+    else if (nav.startsWith('nl')) initial = 'nl';
+    else initial = 'es';
+  }
+  applyLang(initial);
+
+  document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
 </script>
 
 </body>
